@@ -9,6 +9,5 @@ public class Cipher {
       pen.printf("args[%d] = \"%s\"\n", i, args[i]);
     }
     pen.close();
-    System.err.println("Error: Invalid parameters");
   }
 }
