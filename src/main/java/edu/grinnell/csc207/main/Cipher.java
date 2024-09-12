@@ -20,35 +20,38 @@ public class Cipher {
     String key = null;
     boolean afound = false;
     boolean cfound = false;
-    for(int i = 0; i < args.length; i++)
-    {
-      if(args[i].equals("-encode"))
+    for (String arg : args){
+      if(arg.startsWith("-"))
+      {
+      
+      if(arg.equals("-encode"))
       {
           action = "encode";
           afound = true;
       }
-      else if(args[i].equals( "-decode"))
+      else if(arg.equals( "-decode"))
       {
           action = "decode";
           afound = true;
       }
-      else if(args[i].equals("-caesar"))
+      else if(arg.equals("-caesar"))
       {
           ciphertype = "caesar";
           cfound = true;
       }
-      else if(args[i].equals("-vigenere"))
+      else if(arg.equals("-vigenere"))
       {
           ciphertype = "vigenere";
           cfound = true;
       }
+    }
       else if (message == null) 
       {
-        message = args[i];
+        message = arg;
       } 
       else if (key == null) 
       {
-        key = args[i];
+        key = arg;
       }
       else{
         System.err.println("Error: Incorrect number of parameters.");
