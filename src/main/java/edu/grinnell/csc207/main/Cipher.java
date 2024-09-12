@@ -45,6 +45,7 @@ public class Cipher {
           cfound = true;
       }
     }
+
       else if (message == null) 
       {
         message = arg;
@@ -68,17 +69,15 @@ public class Cipher {
     {
         if (action.equals("encode"))
         {
-          for (char ch = 'a'; ch <= 'z'; ch++) 
-          {
-            pen.printf("n = %c: %s\n", ch, CipherUtils.caesarEncrypt(message, key.charAt(0)));
-          }
+          String encryptedMessage = CipherUtils.caesarEncrypt(message, key.charAt(0));
+          pen.printf("%s\n", encryptedMessage);
+          return;
         }
         if (action.equals("decode"))
         {
-        for (char ch = 'a'; ch <= 'z'; ch++) 
-        {
-          pen.printf("n = %c: %s\n", ch, CipherUtils.caesarDecrypt(message, key.charAt(0)));
-        }
+        String decryptedMessage = CipherUtils.caesarDecrypt(message, key.charAt(0));
+        pen.printf("%s\n", decryptedMessage);
+        return;
         }
     }
 
@@ -86,17 +85,17 @@ public class Cipher {
     {
         if (action.equals("encode"))
       {
-        for (char ch = 'a'; ch <= 'z'; ch++) 
-        {
-          pen.printf("n = %c: %s\n", ch, CipherUtils.vigenereEncrypt(message, key));
-        }
+        
+          String encryptedMessage = CipherUtils.vigenereEncrypt(message, key);
+          pen.printf("%s\n", encryptedMessage);
+        
       }
       if (action.equals("decode"))
       {
-      for (char ch = 'a'; ch <= 'z'; ch++) 
-      {
-        pen.printf("n = %c: %s\n", ch, CipherUtils.vigenereDecrypt(message, key));
-      }
+        
+          String decryptedMessage = CipherUtils.vigenereDecrypt(message, key);
+        pen.printf("%s\n", decryptedMessage);
+      
       }
   }
     else 
