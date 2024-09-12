@@ -34,7 +34,7 @@ public class CipherUtils {
       int intfinalized = base - letter2int(letter);
       if (intfinalized < 0)
       {
-        intfinalized = (-1 * intfinalized);
+        intfinalized = intfinalized += 26;
       }
       intfinalized = intfinalized % 26;
       char charfinal = int2letter(intfinalized);
@@ -66,7 +66,7 @@ public class CipherUtils {
       int intfinished = base1 - base2;
       if (intfinished < 0)
       {
-        intfinished = (-1 * intfinished);
+        intfinished = intfinished += 26;
       }
       intfinished = intfinished % 26;
       char newletter = int2letter(intfinished);
