@@ -38,7 +38,8 @@ public class AllCaesar {
     String str = args[1];
     String de = args[0];
     if ((!de.equals("decode")) && (!de.equals("encode"))) {
-      System.err.println("Invalid option: " + de + ". Valid options are \"encode\" or \"decode\"");
+      System.err.println("Error: Invalid option: " + de
+          + ".Valid options are \"encode\" or \"decode\"");
       return;
     } //if statement
     for (int i = 0; i < str.length(); i++) {

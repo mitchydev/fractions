@@ -74,13 +74,13 @@ public class Cipher {
       return;
     } // if statement
     for (char ch: message.toCharArray()) {
-      if (Character.isUpperCase(ch)) {
+      if (Character.isUpperCase(ch) || ch == ' ') {
         System.err.println("Error: Strings must be only lowercase letters.");
         return;
       } // if statement
     } // for loop
     for (char ch: key.toCharArray()) {
-      if (Character.isUpperCase(ch)) {
+      if (Character.isUpperCase(ch) || ch == ' ') {
         System.err.println("Error: Strings must be only lowercase letters.");
         return;
       } // if statement
