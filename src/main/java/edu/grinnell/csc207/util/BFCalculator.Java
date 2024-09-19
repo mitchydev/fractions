@@ -2,7 +2,7 @@ package edu.grinnell.csc207.util;
 /**
  * Words words words words
  */
-public class CipherUtils {
+public class BFcalculator {
   /**
   * ...
   *

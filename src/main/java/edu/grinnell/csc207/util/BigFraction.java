@@ -123,10 +123,33 @@ public class BigFraction {
       (this.num.multiply(addend.denom)).add(addend.num.multiply(this.denom));
 
     // Return the computed value
-    return new BigFraction(resultNumerator, resultDenominator);
+    return new BigFraction(resultNumerator, resultDenominator).simplify();
   } // add(BigFraction)
 
-  public BigFraction multiplie(BigFraction multiplier) {
+  public BigFraction subtract(BigFraction subtractend) {
+    BigInteger resultNumerator;
+    BigInteger resultDenominator;
+
+    // The denominator of the result is the product of this object's
+    // denominator and addend's denominator
+    resultDenominator = this.denom.multiply(subtractend.denom);
+    // The numerator is more complicated
+    resultNumerator =
+      (this.num.multiply(subtractend.denom)).subtract(subtractend.num.multiply(this.denom));
+
+    // Return the computed value
+    return new BigFraction(resultNumerator, resultDenominator).simplify();
+  } // subtract(BigFraction)
+
+  /**
+   * Multiply two fractions together
+   *
+   * @param multiplier
+   *   The fraction to multiply
+   *
+   * @return the result of the multiplication.
+   */
+  public BigFraction multiply(BigFraction multiplier) {
     BigInteger resultNumerator;
     BigInteger resultDenominator;
 
@@ -137,20 +160,43 @@ public class BigFraction {
     resultNumerator = this.num.multiply(multiplier.num);
 
     // Return the computed value
-    return new BigFraction(resultNumerator, resultDenominator);
-  } // add(BigFraction)
+    return new BigFraction(resultNumerator, resultDenominator).simplify();
+  } // multiply (BigFraction)
 
-
-  public BigFraction fractional(BigInteger int1, BigInteger int2) {
+  /**
+   * Divide two fractions 
+   *
+   * @param dividend
+   *   The fraction to multiply
+   *
+   * @return the result of the division.
+   */
+  public BigFraction divide(BigFraction dividend) {
     BigInteger resultNumerator;
     BigInteger resultDenominator;
 
-    resultNumerator = 
-    resultDenominator = int2;
+    // The denominator of the result is the product of this object's
+    // denominator and addend's denominator
+    resultDenominator = this.denom.multiply(dividend.num);
+    resultNumerator = this.denom.multiply(dividend.denom);
 
+    // Return the computed value
+    return new BigFraction(resultNumerator, resultDenominator).simplify();
+  } // divide (BigFraction)
+
+    /**
+   * identifies and return
+   *
+   * 
+   *
+   * @return the simplified fraction
+   */
+  public BigFraction simplify() {
+    BigInteger common = this.num.gcd(this.denom);
+    BigInteger resultNumerator = this.num.divide(common);
+    BigInteger resultDenominator = this.denom.divide(common);
     return new BigFraction(resultNumerator, resultDenominator);
-
-  }
+  } // simplify()
 
   /**
    * Get the denominator of this fraction.

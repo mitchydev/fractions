@@ -9,8 +9,9 @@ public class BFRegisterSet {
 
   }
 
-  public BigFraction get(char register){
+  // public BigFraction get(char register){
+  //   
     
-  }
+  // }
   
 }
