@@ -78,7 +78,7 @@ public class BigFraction {
   } // BigFraction(int, int)
 
   /**
-   * Build a new fraction by parsing a string.
+   * Build a new fraction by parsing ax string.
    *
    * Warning! Not yet implemented.
    *
@@ -177,8 +177,8 @@ public class BigFraction {
 
     // The denominator of the result is the product of this object's
     // denominator and addend's denominator
-    resultDenominator = this.denom.multiply(dividend.num);
-    resultNumerator = this.denom.multiply(dividend.denom);
+    resultDenominator = this.denom.multiply(dividend.denom);
+    resultNumerator = this.denom.multiply(dividend.num);
 
     // Return the computed value
     return new BigFraction(resultNumerator, resultDenominator).simplify();
