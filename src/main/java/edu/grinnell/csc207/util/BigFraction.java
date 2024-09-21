@@ -86,8 +86,18 @@ public class BigFraction {
    *   The fraction in string form
    */
   public BigFraction(String str) {
-    this.num = DEFAULT_NUMERATOR;
-    this.denom = DEFAULT_DENOMINATOR;
+    String[ ] parts = str.split("/");
+
+    if (parts.length == 1) {
+      this.num = new BigInteger(parts[0]);
+      this.denom = new BigInteger("1");
+    }
+
+    if (parts.length == 2) {
+      this.num = new BigInteger(parts[0]);
+      this.denom = new BigInteger(parts[1]);
+    }
+
   } // BigFraction
 
   // +---------+------------------------------------------------------
@@ -177,8 +187,8 @@ public class BigFraction {
 
     // The denominator of the result is the product of this object's
     // denominator and addend's denominator
-    resultDenominator = this.denom.multiply(dividend.denom);
-    resultNumerator = this.denom.multiply(dividend.num);
+    resultNumerator = this.num.multiply(dividend.denom);
+    resultDenominator = this.denom.multiply(dividend.num);
 
     // Return the computed value
     return new BigFraction(resultNumerator, resultDenominator).simplify();
@@ -227,6 +237,10 @@ public class BigFraction {
     if (this.num.equals(BigInteger.ZERO)) {
       return "0";
     } // if it's zero
+
+    if (this.denom.equals(new BigInteger("1"))) {
+      return this.num.toString();
+    }
 
     // Lump together the string represention of the numerator,
     // a slash, and the string representation of the denominator

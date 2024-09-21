@@ -48,6 +48,12 @@ public class BFRegisterSet {
     stores[i] = val;
   } // store(char register, BigFraciton val)
 
+  /**
+  *  Retrieves the value from the given register.
+  *
+  * @param register The register to be searched
+  * @return the value
+  */
   public BigFraction get(char register){
     int i = letter2int(register);
     if (stores[i] == null) {
