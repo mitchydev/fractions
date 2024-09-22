@@ -74,14 +74,14 @@ public final class BigFraction {
    */
   public BigFraction(int numerator, int denominator) {
     if (denominator < 0) {
-        this.num = BigInteger.valueOf(-numerator);
-        this.denom = BigInteger.valueOf(-denominator);
+      this.num = BigInteger.valueOf(-numerator);
+      this.denom = BigInteger.valueOf(-denominator);
     } else {
-        this.num = BigInteger.valueOf(numerator);
-        this.denom = BigInteger.valueOf(denominator);
-    }
+      this.num = BigInteger.valueOf(numerator);
+      this.denom = BigInteger.valueOf(denominator);
+    } // else
     this.simplify();
-}
+  } // BigFraction
 
   /**
    * Build a new fraction by parsing ax string.
@@ -102,7 +102,7 @@ public final class BigFraction {
     if (parts.length == 2) {
       this.num = new BigInteger(parts[0]);
       this.denom = new BigInteger(parts[1]);
-    } 
+    } // if statement
 
     this.simplify();
 

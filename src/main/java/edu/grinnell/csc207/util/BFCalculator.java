@@ -91,3 +91,4 @@ public class BFCalculator {
     this.lastval = new BigFraction(0, 1);
   } //clear()
 } // BFcalculator
+
