@@ -74,13 +74,14 @@ public final class BigFraction {
    */
   public BigFraction(int numerator, int denominator) {
     if (denominator < 0) {
-      this.num = BigInteger.valueOf(-numerator);
-      this.denom = BigInteger.valueOf(-denominator);
+        this.num = BigInteger.valueOf(-numerator);
+        this.denom = BigInteger.valueOf(-denominator);
     } else {
-      this.num = BigInteger.valueOf(numerator);
-      this.denom = BigInteger.valueOf(denominator);
-    } //else
-  } // BigFraction(int, int)
+        this.num = BigInteger.valueOf(numerator);
+        this.denom = BigInteger.valueOf(denominator);
+    }
+    this.simplify();
+}
 
   /**
    * Build a new fraction by parsing ax string.
@@ -101,7 +102,9 @@ public final class BigFraction {
     if (parts.length == 2) {
       this.num = new BigInteger(parts[0]);
       this.denom = new BigInteger(parts[1]);
-    } // if statement
+    } 
+
+    this.simplify();
 
   } // BigFraction
 
@@ -211,9 +214,9 @@ public final class BigFraction {
   */
   public BigFraction simplify() {
     BigInteger common = this.num.gcd(this.denom);
-    BigInteger resultNumerator = this.num.divide(common);
-    BigInteger resultDenominator = this.denom.divide(common);
-    return new BigFraction(resultNumerator, resultDenominator);
+    this.num = this.num.divide(common);
+    this.denom = this.denom.divide(common);
+    return this;
   } // simplify()
 
   /**
@@ -240,19 +243,22 @@ public final class BigFraction {
    * @return a string that represents the fraction.
    */
   public String toString() {
+    BigFraction simplifed = this.simplify();
+    BigInteger numerator = simplifed.num;
+    BigInteger denominator = simplifed.denom;
     // Special case: It's zero
-    if (this.num.equals(BigInteger.ZERO)) {
+    if (numerator.equals(BigInteger.ZERO)) {
       return "0";
     } // if statement
-    if (this.denom.compareTo(BigInteger.ZERO) < 0) {
-      this.num = this.num.negate();
-      this.denom = this.denom.negate();
+    if (denominator.compareTo(BigInteger.ZERO) < 0) {
+      numerator = numerator.negate();
+      denominator = denominator.negate();
     } // if statement
-    if (this.num.mod(this.denom).equals(BigInteger.ZERO)) {
-      return this.num.divide(this.denom).toString();
+    if (numerator.mod(denominator).equals(BigInteger.ZERO)) {
+      return numerator.divide(denominator).toString();
     } // if statement
-    if (this.denom.equals(BigInteger.ONE)) {
-      return this.num.toString();
+    if (denominator.equals(BigInteger.ONE)) {
+      return numerator.toString();
     } // if statement
 
     // Lump together the string represention of the numerator,
