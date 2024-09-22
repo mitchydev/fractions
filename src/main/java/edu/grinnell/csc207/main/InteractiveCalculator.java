@@ -3,77 +3,58 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 import edu.grinnell.csc207.util.BigFraction;
 import edu.grinnell.csc207.util.BFRegisterSet;
+import edu.grinnell.csc207.util.BFparse;
 
 /**
- * Words words words words
+ * Prompts the user to input commands that the calculator will take and pass to
+ * BFparse.java for evaluation and calculation.
  */
 public class InteractiveCalculator {
+  /**
+  * Takes in user arguments and passes it to the BFparse class.
+  *
+  * @param args user arugments.
+  */
   public static void main(String[] args) {
     PrintWriter pen = new PrintWriter(System.out, true);
     Scanner eyes = new Scanner(System.in);
     BigFraction lastvalue = new BigFraction(0, 1);
     BFRegisterSet registers = new BFRegisterSet();
+    BFparse parser = new BFparse(registers);
 
-    while(true) {
+    while (true) {
       pen.print("> ");
       pen.flush();
       String stuff = eyes.nextLine().trim();
 
       if (stuff.equals("QUIT") || stuff.equals("quit")) {
         break;
-      }
+      } // If statement
 
-    if (stuff.startsWith("STORE") || stuff.startsWith("store")) {
-      String[] storedvars = stuff.split(" ");
-      char storedvalue = storedvars[1].charAt(0);
-      registers.store(storedvalue, lastvalue);  
-      continue;
-    }
+      if (stuff.startsWith("STORE") || stuff.startsWith("store")) {
+        String[] storedvars = stuff.trim().split(" ");
+        if (!Character.isLowerCase(storedvars[1].charAt(0))) {
+          pen.println("ERROR [STORE command recieved invalid register]");
+          continue;
+        } // if statement
+        char storedvalue = storedvars[1].charAt(0);
+        registers.store(storedvalue, lastvalue);
+        pen.println("STORED");
+        continue;
+      } // if statement
 
-      String[ ] inputs = stuff.split(" ");
-      BigFraction result;
-
-      if (Character.isLetter(inputs[0].charAt(0))) {
-        result = registers.get(inputs[0].charAt(0));
+      if (!stuff.isEmpty()) {
+        BigFraction result = parser.parseAndeval(stuff);
+        if (result != null) {
+          lastvalue = result;
+          pen.println(lastvalue);
+        } else {
+          pen.println("ERROR [Error 1]");
+        } // else statement
       } else {
-        result = new BigFraction(inputs[0]);
-      }
-
-      for (int i = 1; i < inputs.length; i += 2) {
-        String operator = inputs[i];
-        BigFraction ontothenext;
-
-        if (Character.isLetter(inputs[i + 1].charAt(0))) {
-          ontothenext = registers.get(inputs[i + 1].charAt(0));
-        }
-        else {
-          ontothenext = new BigFraction((inputs[i + 1]));
-        }
-
-        switch (operator) {
-          case "+":
-            result = result.add(ontothenext);
-            break;
-          case "-":
-            result = result.subtract(ontothenext);
-            break;
-          case "*":
-            result = result.multiply(ontothenext);
-            break;
-          case "/":
-            result = result.divide(ontothenext);
-            break;
-          default:
-            pen.println("Unknown symbol!");
-            break;
-        }
-      }
-      lastvalue = result;
-      pen.println(result);
-    }
-
+        pen.println("ERROR [Error 2]");
+      } // else statement
+    } // while loop
     eyes.close();
-
-  }
-
-}
+  } // main(String args)
+} // class InteractiveCalculator

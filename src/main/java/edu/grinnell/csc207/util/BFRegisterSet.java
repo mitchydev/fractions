@@ -1,26 +1,27 @@
 package edu.grinnell.csc207.util;
-
 /**
- * A set of registers corresponding to the letters 'a' through 'z'. 
- */
+* A set of registers corresponding to the letters 'a' through 'z'.
+*/
 public class BFRegisterSet {
-
+  /** Represents lowercase A. */
   private static final int LOWERCASE_A = 97;
+  /** Keeps the size of the register. */
   private static final int REGISTERSIZE = 26;
-  
   // +--------+-------------------------------------------------------
   // | Fields |
   // +--------+
 
+  /** Stores the value of fractions for corresponding register. */
   private final BigFraction[] stores;
 
   // +--------------+-------------------------------------------------
   // | Constructors |
   // +--------------+
 
+  /** Initializes the register set with the set register size (REGISTERSIZE). */
   public BFRegisterSet() {
     this.stores = new BigFraction[REGISTERSIZE];
-  }
+  } // BFRegisterSet()
 
   // +---------+------------------------------------------------------
   // | Methods |
@@ -40,8 +41,9 @@ public class BFRegisterSet {
   /**
   * Stores a BigFraction for an integer.
   *
-  * @param letter The letter to convert
-  * @return void
+  * @param register The register where the value will be stored
+  * @param val The value to store
+  *
   */
   public void store(char register, BigFraction val) {
     int i = letter2int(register);
@@ -54,14 +56,13 @@ public class BFRegisterSet {
   * @param register The register to be searched
   * @return the value
   */
-  public BigFraction get(char register){
+  public BigFraction get(char register) {
     int i = letter2int(register);
     if (stores[i] == null) {
-      return new BigFraction(0,1);
-    }
+      return new BigFraction(0, 1);
+    } // if statement
     return stores[i];
-    }
-    
-}
-  
+  } // BigFraction get(char register)
+
+} // BFRegisterSet ()
 
