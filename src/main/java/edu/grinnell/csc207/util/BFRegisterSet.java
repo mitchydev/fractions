@@ -65,4 +65,3 @@ public class BFRegisterSet {
   } // BigFraction get(char register)
 
 } // BFRegisterSet ()
-

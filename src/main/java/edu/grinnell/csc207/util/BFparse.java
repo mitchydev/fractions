@@ -34,26 +34,14 @@ public class BFparse {
   */
   public BigFraction parseAndeval(String expr) {
     String[] parts = expr.split(" ");
-    if (parts.length == 0 || parts[0].isEmpty()) {
-      return null;
-    } // if statement
+
     BigFraction result = parseOperator(parts[0]);
-    if (result == null) {
-      return null;
-    } // if statement
+
     for (int i = 1; i < parts.length; i += 2) {
-      if (i + 1 >= parts.length) {
-        return null;
-      } // if statment
       String operator = parts[i];
       BigFraction ontothenext = parseOperator(parts[i + 1]);
-      if (ontothenext == null) {
-        return null;
-      } // if statement
+
       result = evaluate(result, operator, ontothenext);
-      if (result == null) {
-        return null;
-      }
     } // For loop
     return result;
   } //parseAndeval (String expr)
@@ -65,12 +53,10 @@ public class BFparse {
       String[] fractionParts = input.split("/");
       int numerator = Integer.parseInt(fractionParts[0]);
       int denominator = Integer.parseInt(fractionParts[1]);
-      if (denominator == 0) {
-        return null;
-      }
       return new BigFraction(numerator, denominator);
     } else {
-      return null;
+      int wholenumber = Integer.parseInt(input);
+      return new BigFraction(wholenumber, 1);
     } // else
   } //BigFraction parseOperator(String input)
 
@@ -85,7 +71,7 @@ public class BFparse {
       case "*":
         return left.multiply(right);
       default:
-        return null;
+        throw new IllegalArgumentException("Unknown operator: " + operator);
     } // switch
   } // BigFraction evaluate(BigFraction left, String operator, BigFraction right)
 } //BFparse

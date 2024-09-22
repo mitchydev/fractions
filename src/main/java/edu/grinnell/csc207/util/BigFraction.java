@@ -80,10 +80,6 @@ public final class BigFraction {
       this.num = BigInteger.valueOf(numerator);
       this.denom = BigInteger.valueOf(denominator);
     } //else
-    BigFraction simplified = this.simplify();
-    this.num = simplified.num;
-    this.denom = simplified.denom;
-
   } // BigFraction(int, int)
 
   /**
@@ -95,7 +91,7 @@ public final class BigFraction {
    *   The fraction in string form
    */
   public BigFraction(String str) {
-    String[] parts = str.split("/");
+    String[ ] parts = str.split("/");
 
     if (parts.length == 1) {
       this.num = new BigInteger(parts[0]);
@@ -106,10 +102,6 @@ public final class BigFraction {
       this.num = new BigInteger(parts[0]);
       this.denom = new BigInteger(parts[1]);
     } // if statement
-
-    BigFraction simplified = this.simplify();
-    this.num = simplified.num;
-    this.denom = simplified.denom;
 
   } // BigFraction
 
@@ -248,22 +240,24 @@ public final class BigFraction {
    * @return a string that represents the fraction.
    */
   public String toString() {
-    BigFraction simplified = this.simplify();
-    BigInteger numerator = simplified.num;
-    BigInteger denominator = simplified.denom;
-    if (num.equals(BigInteger.ZERO)) {
+    // Special case: It's zero
+    if (this.num.equals(BigInteger.ZERO)) {
       return "0";
     } // if statement
-    if (denominator.compareTo(BigInteger.ZERO) < 0) {
-      numerator = numerator.negate();
-      denominator = denominator.negate();
+    if (this.denom.compareTo(BigInteger.ZERO) < 0) {
+      this.num = this.num.negate();
+      this.denom = this.denom.negate();
     } // if statement
-    if (denominator.equals(BigInteger.ONE)) {
-      return numerator.toString();
-    } //if statement
-    if (numerator.mod(denominator).equals(BigInteger.ZERO)) {
-      return numerator.divide(denominator).toString();
+    if (this.num.mod(this.denom).equals(BigInteger.ZERO)) {
+      return this.num.divide(this.denom).toString();
     } // if statement
-    return numerator + "/" + denominator;
+    if (this.denom.equals(BigInteger.ONE)) {
+      return this.num.toString();
+    } // if statement
+
+    // Lump together the string represention of the numerator,
+    // a slash, and the string representation of the denominator
+    // return this.num.toString().concat("/").concat(this.denom.toString());
+    return this.num + "/" + this.denom;
   } // toString()
 } // class BigFraction

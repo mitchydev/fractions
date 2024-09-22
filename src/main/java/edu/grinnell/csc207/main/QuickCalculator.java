@@ -23,28 +23,17 @@ public class QuickCalculator {
     PrintWriter pen = new PrintWriter(System.out, true);
 
     for (String arg : args) {
-      arg = arg.trim();
-      if (arg.isEmpty()) {
-        pen.println("FAILED [Invalid expression]");
-        continue;
-      }
       if (arg.startsWith("STORE") || arg.startsWith("store")) {
         String[] parts = arg.split(" ");
-        if (parts.length < 2 || parts[1].length() != 1 || !Character.isLowerCase(parts[1].charAt(0))) {
-            pen.println(arg + " ERROR [STORE command recieved invalid register]");
-            continue;
-        } // if statement
         char register = parts[1].charAt(0);
         registers.store(register, lastValue);
-        pen.println("STORE " + register + " -> STORED");
-        continue;
       } else {
         BigFraction result = parser.parseAndeval(arg);
         if (result != null) {
           lastValue = result;
-          pen.println(arg + " -> " + lastValue);
+          pen.println(arg + " = " + lastValue);
         } else {
-          pen.println("FAILED [Invalid expression]");
+          pen.println("Error: Invalid expression");
         } // else
       } // else
     } // for loop

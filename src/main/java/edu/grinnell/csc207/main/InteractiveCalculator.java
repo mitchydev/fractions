@@ -32,14 +32,9 @@ public class InteractiveCalculator {
       } // If statement
 
       if (stuff.startsWith("STORE") || stuff.startsWith("store")) {
-        String[] storedvars = stuff.trim().split(" ");
-        if (!Character.isLowerCase(storedvars[1].charAt(0))) {
-          pen.println("ERROR [STORE command recieved invalid register]");
-          continue;
-        } // if statement
+        String[] storedvars = stuff.split(" ");
         char storedvalue = storedvars[1].charAt(0);
         registers.store(storedvalue, lastvalue);
-        pen.println("STORED");
         continue;
       } // if statement
 
@@ -49,10 +44,10 @@ public class InteractiveCalculator {
           lastvalue = result;
           pen.println(lastvalue);
         } else {
-          pen.println("ERROR [Error 1]");
+          pen.println("error: invalid");
         } // else statement
       } else {
-        pen.println("ERROR [Error 2]");
+        pen.println("error: no input");
       } // else statement
     } // while loop
     eyes.close();
