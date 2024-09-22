@@ -14,9 +14,9 @@ In this program, the user can either choose to use a "Quick Calculator" or an
 
 -Course Material: I used the course instructions by Samuel Rebelsky to create this project.
 
--Maven I used the build tool Maven for this project.
+-Maven: I used the build tool Maven for this project.
 
--VScode To edit and organize project files.
+-VScode: To edit and organize project files.
 
 -Lab: The basis for BigFraction.util was from a lab that Samantha Schmidt and I did titled: "Designing Your Own Classes."
 
