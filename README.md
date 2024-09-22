@@ -18,6 +18,8 @@ In this program, the user can either choose to use a "Quick Calculator" or an
 
 -VScode To edit and organize project files.
 
+-Lab: The basis for BigFraction.util was from a lab that Samantha Schmidt and I did titled: "Designing Your Own Classes."
+
 
 ## Repository 
 https://github.com/mitchydev/fractions
