@@ -8,6 +8,8 @@ import edu.grinnell.csc207.util.BFparse;
 /**
  * Prompts the user to input commands that the calculator will take and pass to
  * BFparse.java for evaluation and calculation.
+ *
+ * @author Mitch Paiva
  */
 public class InteractiveCalculator {
   /**
@@ -35,6 +37,7 @@ public class InteractiveCalculator {
         String[] storedvars = stuff.split(" ");
         char storedvalue = storedvars[1].charAt(0);
         registers.store(storedvalue, lastvalue);
+        pen.println("STORED");
         continue;
       } // if statement
 
@@ -44,10 +47,10 @@ public class InteractiveCalculator {
           lastvalue = result;
           pen.println(lastvalue);
         } else {
-          pen.println("error: invalid");
+          pen.println("ERROR [Invalid expression]");
         } // else statement
       } else {
-        pen.println("error: no input");
+        pen.println("ERROR [Invalid expression]");
       } // else statement
     } // while loop
     eyes.close();

@@ -3,6 +3,7 @@ package edu.grinnell.csc207.util;
 /**
  * The primary workhorse. This class has a field that stores the last value
  * calculated and provides the several functional methods.
+ * @author Mitch Paiva
  */
 public class BFCalculator {
   // +--------+-------------------------------------------------------

@@ -1,6 +1,7 @@
 package edu.grinnell.csc207.util;
 /**
 * A set of registers corresponding to the letters 'a' through 'z'.
+* @author Mitch Paiva
 */
 public class BFRegisterSet {
   /** Represents lowercase A. */

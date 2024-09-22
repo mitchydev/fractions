@@ -9,6 +9,8 @@ import java.io.PrintWriter;
 /**
  * QuickCalculator processes command-line arguments to evaluate fractions and
  * store results in registers.
+ *
+ * @author Mitch Paiva
  */
 public class QuickCalculator {
   /**
@@ -27,11 +29,12 @@ public class QuickCalculator {
         String[] parts = arg.split(" ");
         char register = parts[1].charAt(0);
         registers.store(register, lastValue);
+        pen.println(arg + " -> STORED");
       } else {
         BigFraction result = parser.parseAndeval(arg);
         if (result != null) {
           lastValue = result;
-          pen.println(arg + " = " + lastValue);
+          pen.println(arg + " --> " + lastValue);
         } else {
           pen.println("Error: Invalid expression");
         } // else

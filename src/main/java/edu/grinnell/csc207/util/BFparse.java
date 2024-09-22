@@ -3,6 +3,8 @@ package edu.grinnell.csc207.util;
 /**
  * An added util class that parses through user inputted commands
  * separating values from operators and evaluating them.
+ *
+ * @author Mitch Paiva
  */
 public class BFparse {
   // +--------+-------------------------------------------------------
